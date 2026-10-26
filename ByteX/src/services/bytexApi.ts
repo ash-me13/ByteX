@@ -1,4 +1,5 @@
 import type { OrbState, MemoryItem } from '../types';
+import { MockAssistantService } from './mockAssistant';
 
 export type ConnectionStatus = 'online' | 'offline' | 'connecting';
 
@@ -184,19 +185,34 @@ class ByteXApiService {
       console.warn('[ByteX REST] Fallback failed:', e);
     }
 
-    // 3. Backend Offline Alert
+    // 3. Standalone / Demo fallback when backend server is not running
     this.setStatus('offline');
-    this.notifyEvent({
-      type: 'ERROR',
-      message: 'ByteX Core is offline. Reconnecting backend...',
-      state: 'error',
-    });
+    try {
+      const mockResult = await MockAssistantService.processCommand(text);
+      this.notifyEvent({
+        type: 'ASSISTANT_MESSAGE',
+        message: mockResult.message.content,
+        state: 'speaking',
+      });
 
-    setTimeout(() => {
-      this.notifyEvent({ type: 'STATE_CHANGE', state: 'idle' });
-    }, 3000);
+      setTimeout(() => {
+        this.notifyEvent({ type: 'STATE_CHANGE', state: 'idle' });
+      }, 3500);
 
-    return false;
+      return true;
+    } catch {
+      this.notifyEvent({
+        type: 'ERROR',
+        message: 'ByteX Core is offline. Launch start_bytex.py locally for full desktop control.',
+        state: 'error',
+      });
+
+      setTimeout(() => {
+        this.notifyEvent({ type: 'STATE_CHANGE', state: 'idle' });
+      }, 3000);
+
+      return false;
+    }
   }
 
   // --- MEMORY MANAGEMENT REST API CALLS (FEATURE #39 PERSISTENT MEMORY 2.0) ---
