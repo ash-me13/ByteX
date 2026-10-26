@@ -1,0 +1,125 @@
+.bytex-orb-container {
+  position: relative;
+  width: 100%;
+  max-width: 560px;
+  height: 100%;
+  max-height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  user-select: none;
+  overflow: visible;
+}
+
+.bytex-orb-canvas {
+  width: 100% !important;
+  height: 100% !important;
+  outline: none;
+  touch-action: none;
+  cursor: grab;
+  position: relative;
+  z-index: 2;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.bytex-orb-canvas:active {
+  cursor: grabbing;
+}
+
+/* Atmospheric Smooth Outer Glow Backdrop */
+.bytex-orb-glow-backdrop {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.42;
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity;
+}
+
+/* Minimal Subtle Ambient Ring */
+.bytex-orb-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  border: 1px dashed rgba(0, 240, 255, 0.12);
+  pointer-events: none;
+  z-index: 0;
+  animation: orbRingRotate 60s linear infinite;
+  opacity: 0.35;
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* --- Mode A: Empty State Prominent Centerpiece (~330-380px visible diameter) --- */
+.bytex-main-stage.mode-empty .bytex-orb-canvas,
+.bytex-home-content.empty-state .bytex-orb-canvas,
+.bytex-home-content.no-messages .bytex-orb-canvas {
+  transform: scale(1.18);
+  transform-origin: center center;
+}
+
+.bytex-main-stage.mode-empty .bytex-orb-glow-backdrop,
+.bytex-home-content.empty-state .bytex-orb-glow-backdrop,
+.bytex-home-content.no-messages .bytex-orb-glow-backdrop {
+  width: 380px;
+  height: 380px;
+  filter: blur(64px);
+  opacity: 0.46;
+}
+
+.bytex-main-stage.mode-empty .bytex-orb-ring,
+.bytex-home-content.empty-state .bytex-orb-ring,
+.bytex-home-content.no-messages .bytex-orb-ring {
+  width: 370px;
+  height: 370px;
+}
+
+/* --- Mode B: Conversation Active Orb (Whole-orb rendering with native particle sharpness) --- */
+.bytex-main-stage.mode-conversation .bytex-orb-canvas,
+.bytex-home-content.conversation-state .bytex-orb-canvas,
+.bytex-home-content.has-messages .bytex-orb-canvas {
+  transform: scale(1.0);
+  transform-origin: center center;
+}
+
+.bytex-main-stage.mode-conversation .bytex-orb-glow-backdrop,
+.bytex-home-content.conversation-state .bytex-orb-glow-backdrop,
+.bytex-home-content.has-messages .bytex-orb-glow-backdrop {
+  width: 350px;
+  height: 350px;
+  filter: blur(52px);
+  opacity: 0.38;
+}
+
+.bytex-main-stage.mode-conversation .bytex-orb-ring,
+.bytex-home-content.conversation-state .bytex-orb-ring,
+.bytex-home-content.has-messages .bytex-orb-ring {
+  width: 340px;
+  height: 340px;
+  opacity: 0.3;
+}
+
+@keyframes orbRingRotate {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+/* Accessibility: Respect prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  .bytex-orb-ring {
+    animation: none !important;
+  }
+  .bytex-orb-glow-backdrop {
+    transition: none !important;
+  }
+}

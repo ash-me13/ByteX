@@ -1,0 +1,131 @@
+.bytex-quickactions-panel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  max-width: 100%;
+  margin: 0 auto 0.65rem auto;
+  padding: 0.3rem 0.45rem;
+  background: rgba(14, 18, 28, 0.78);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 18px;
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  box-shadow: 
+    0 10px 30px -5px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(0, 240, 255, 0.04),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  z-index: 20;
+  user-select: none;
+  animation: quickActionsFadeIn 0.22s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes quickActionsFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.bytex-quickactions-track {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  flex-wrap: nowrap;
+}
+
+.bytex-quickaction-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.38rem 0.72rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 12px;
+  color: #94a3b8;
+  font-size: 0.78rem;
+  font-weight: 500;
+  font-family: inherit;
+  letter-spacing: 0.01em;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+  outline: none;
+}
+
+.bytex-action-icon {
+  color: #64748b;
+  flex-shrink: 0;
+  transition: color 0.18s ease;
+}
+
+.bytex-action-label {
+  line-height: 1;
+}
+
+.bytex-quickaction-chip:hover:not(:disabled) {
+  background: rgba(0, 240, 255, 0.08);
+  border-color: rgba(0, 240, 255, 0.28);
+  color: #f1f5f9;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 240, 255, 0.1);
+}
+
+.bytex-quickaction-chip:hover:not(:disabled) .bytex-action-icon {
+  color: #00f0ff;
+}
+
+.bytex-quickaction-chip:active:not(:disabled) {
+  transform: translateY(0);
+  background: rgba(0, 240, 255, 0.12);
+}
+
+.bytex-quickaction-chip:focus-visible {
+  border-color: rgba(0, 240, 255, 0.6);
+  box-shadow: 0 0 0 2px rgba(0, 240, 255, 0.2);
+  color: #ffffff;
+}
+
+.bytex-quickaction-chip:focus-visible .bytex-action-icon {
+  color: #00f0ff;
+}
+
+.bytex-quickaction-chip:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.bytex-quickaction-chip.toggle-chip {
+  background: rgba(255, 255, 255, 0.015);
+  border-color: rgba(255, 255, 255, 0.04);
+}
+
+.bytex-quickaction-chip.toggle-chip:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.16);
+  color: #e2e8f0;
+  box-shadow: none;
+}
+
+.bytex-quickaction-chip.toggle-chip:hover:not(:disabled) .bytex-action-icon {
+  color: #e2e8f0;
+}
+
+/* Responsive adjust for smaller viewports */
+@media (max-width: 640px) {
+  .bytex-quickactions-panel {
+    border-radius: 14px;
+    padding: 0.25rem 0.35rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .bytex-quickaction-chip {
+    padding: 0.32rem 0.55rem;
+    font-size: 0.74rem;
+    gap: 0.3rem;
+  }
+}

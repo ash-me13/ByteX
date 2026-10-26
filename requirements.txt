@@ -1,0 +1,25 @@
+# ByteX AI Core — Python Backend Dependencies
+# Generated for macOS Apple Silicon & cross-platform execution
+
+# Web Framework & Server
+fastapi>=0.115.0
+uvicorn[standard]>=0.30.0
+websockets>=13.0
+
+# Data Validation & Settings
+pydantic>=2.8.0
+python-dotenv>=1.0.0
+
+# HTTP & AI Providers
+httpx>=0.27.0
+groq>=0.9.0
+
+# System, OS & Utilities
+psutil>=6.0.0
+pyperclip>=1.9.0
+Pillow>=10.4.0
+mss>=9.0.0
+
+# Testing
+pytest>=8.0.0
+pytest-asyncio>=0.23.0

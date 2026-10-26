@@ -1,0 +1,66 @@
+/* ByteX Magic UI Light Rays Component Styles */
+.light-rays-root,
+.pointer-events-none.absolute.inset-0.isolate {
+  pointer-events: none !important;
+  position: absolute !important;
+  top: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  inset: 0 !important;
+  isolation: isolate !important;
+  overflow: hidden !important;
+  border-radius: inherit;
+  z-index: 0;
+}
+
+.light-rays-inner,
+.absolute.inset-0.overflow-hidden {
+  position: absolute !important;
+  top: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  inset: 0 !important;
+  overflow: hidden !important;
+}
+
+.light-rays-radial-1,
+.light-rays-radial-2,
+.absolute.inset-0.opacity-60 {
+  position: absolute !important;
+  top: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  inset: 0 !important;
+  opacity: 0.6 !important;
+}
+
+.light-ray-item,
+.pointer-events-none.absolute.-top-\[12\%\] {
+  pointer-events: none !important;
+  position: absolute !important;
+  top: -12% !important;
+  left: var(--ray-left) !important;
+  height: var(--light-rays-length, 70vh) !important;
+  width: var(--ray-width, 200px) !important;
+  transform-origin: top center !important;
+  transform: translateX(-50%);
+  border-radius: 9999px !important;
+  background: linear-gradient(to bottom, color-mix(in srgb, var(--light-rays-color, rgba(0, 200, 255, 0.25)) 70%, transparent), transparent) !important;
+  opacity: 0;
+  mix-blend-mode: screen !important;
+  filter: blur(var(--light-rays-blur, 36px)) !important;
+  -webkit-filter: blur(var(--light-rays-blur, 36px)) !important;
+  will-change: transform, opacity;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .light-ray-item {
+    opacity: 0.15 !important;
+    animation: none !important;
+    transition: none !important;
+  }
+}

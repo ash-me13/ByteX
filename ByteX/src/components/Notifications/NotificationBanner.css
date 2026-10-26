@@ -1,0 +1,117 @@
+.bytex-notification-container {
+  position: fixed;
+  top: 72px;
+  right: 24px;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  max-width: 380px;
+  width: calc(100% - 48px);
+  pointer-events: none;
+}
+
+.bytex-notification-toast {
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.7rem 0.9rem;
+  background: rgba(18, 22, 34, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 14px;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  animation: slideInNotif 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  transition: all 0.25s ease;
+}
+
+.bytex-notification-toast.warning {
+  border-left: 3px solid #f59e0b;
+}
+
+.bytex-notification-toast.critical {
+  border-left: 3px solid #ef4444;
+}
+
+.bytex-notification-toast.info {
+  border-left: 3px solid #00f0ff;
+}
+
+.bytex-notif-left {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  flex: 1;
+  min-width: 0;
+}
+
+.bytex-notif-icon {
+  flex-shrink: 0;
+}
+
+.bytex-notif-icon.warning {
+  color: #f59e0b;
+}
+
+.bytex-notif-icon.critical {
+  color: #ef4444;
+}
+
+.bytex-notif-icon.info {
+  color: #00f0ff;
+}
+
+.bytex-notif-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  min-width: 0;
+}
+
+.bytex-notif-title {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #94a3b8;
+}
+
+.bytex-notif-message {
+  font-size: 0.82rem;
+  color: #f8fafc;
+  line-height: 1.3;
+  word-break: break-word;
+}
+
+.bytex-notif-close {
+  background: transparent;
+  border: none;
+  color: #64748b;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.bytex-notif-close:hover {
+  color: #f8fafc;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+@keyframes slideInNotif {
+  from {
+    opacity: 0;
+    transform: translateX(30px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}

@@ -1,0 +1,130 @@
+/* ByteX StateDock — Liquid Glass Capsule */
+.bytex-state-dock-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: 0.5rem 0 1rem 0;
+  z-index: 10;
+}
+
+.bytex-state-dock-capsule {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.35rem 0.5rem;
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 9999px;
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.bytex-state-dock-capsule:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.14);
+}
+
+.bytex-state-dock-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.35rem 0.85rem;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 9999px;
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  user-select: none;
+}
+
+.bytex-state-dock-btn:hover {
+  color: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.bytex-state-dock-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.25s ease;
+}
+
+.bytex-state-dock-btn:hover .bytex-state-dock-icon {
+  transform: scale(1.1);
+}
+
+.bytex-state-dock-label {
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Active State Treatments */
+.bytex-state-dock-btn.active {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 
+    0 2px 12px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25);
+}
+
+.bytex-state-dock-btn.active.state-idle {
+  border-color: rgba(0, 240, 255, 0.4);
+  box-shadow: 0 0 16px rgba(0, 240, 255, 0.22);
+}
+.bytex-state-dock-btn.active.state-idle .bytex-state-dock-icon {
+  color: #00f0ff;
+}
+
+.bytex-state-dock-btn.active.state-listening {
+  border-color: rgba(0, 255, 238, 0.5);
+  box-shadow: 0 0 18px rgba(0, 255, 238, 0.3);
+}
+.bytex-state-dock-btn.active.state-listening .bytex-state-dock-icon {
+  color: #00ffee;
+}
+
+.bytex-state-dock-btn.active.state-thinking {
+  border-color: rgba(168, 85, 247, 0.5);
+  box-shadow: 0 0 18px rgba(168, 85, 247, 0.3);
+}
+.bytex-state-dock-btn.active.state-thinking .bytex-state-dock-icon {
+  color: #c084fc;
+}
+
+.bytex-state-dock-btn.active.state-speaking {
+  border-color: rgba(56, 189, 248, 0.5);
+  box-shadow: 0 0 18px rgba(56, 189, 248, 0.3);
+}
+.bytex-state-dock-btn.active.state-speaking .bytex-state-dock-icon {
+  color: #38bdf8;
+}
+
+.bytex-state-dock-indicator {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: currentColor;
+  box-shadow: 0 0 6px currentColor;
+  animation: dockPulse 2s ease-in-out infinite;
+}
+
+@keyframes dockPulse {
+  0%, 100% {
+    opacity: 0.6;
+    transform: scale(0.9);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+}
